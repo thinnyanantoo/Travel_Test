@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvHome"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivCountry"
+                android:layout_width="130dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/countryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thailand"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="25dp"/>
+            <TextView
+                android:id="@+id/countryPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18 Tours"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:textSize="10sp"
+                android:layout_marginStart="10dp"
+                android:textColor="#FFFFFF"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="25dp"
+                android:layout_height="45dp"
+                android:layout_gravity="bottom|end"
+                android:backgroundTint="#D3818181"
+                android:layout_marginStart="100dp"
+
+                android:layout_marginBottom="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:backgroundTint="#D3818181">
+
+                    <TextView
+                        android:id="@+id/countryRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_margin="5dp"
+                        android:text="4.3"
+                        android:textColor="#141010"
+                        android:textSize="10sp" />
+                    <ImageView
+                    android:id="@+id/ivStar"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_star_24dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+

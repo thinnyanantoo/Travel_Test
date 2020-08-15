@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.HomeFragment">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp">
+<!--        <include-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/vpEmpty"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            layout="@layout/view_pod_empty"/>-->
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvEmpty"
+            android:text="There is no data"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/ivEmpty"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/empty_icon"
+            />
+    <TextView
+        android:id="@+id/tvTextTour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sample_tv_find_best_tower"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvTextCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_tv_country"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tvTextTour"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTextCountry"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <TextView
+            android:id="@+id/tvPopularTours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_popular_tower"
+            android:textSize="20sp"
+            android:layout_below="@id/rvCountry"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPopularTours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvPopularTours"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <ImageView
+            android:id="@+id/ivEmptyImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:src="@drawable/empty_icon"/>
+<!--        <org.mmtextview.components.MMTextView-->
+<!--            android:id="@+id/tvEmpty"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/ivEmptyImage"-->
+<!--            android:visibility="gone"-->
+<!--            android:text="@string/em_no_news"-->
+<!--            android:layout_centerHorizonta="true"-->
+<!--            android:layout_centerInParent="true"/>-->
+
+    </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

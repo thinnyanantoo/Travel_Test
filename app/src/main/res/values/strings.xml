@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Travel_Test</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sample_tv_find_best_tower">Find the best Tour</string>
+    <string name="sample_tv_discount_tower">Discount Tower</string>
+    <string name="sample_tv_country">Country</string>
+    <string name="sample_txt_detail">Sea Flower Resort is located in Ko Chang, within 17.7 km of Koh Chang National Park and 19.3 km of Wat Klong Son, Sea Flower Resort provides accommodations with a garden and free WiFi as well as free private parking for guests who drive. The property is around 20.9 km from Ao Sapparot Pier, 4.7 km from Bang Bao Pier and 4.7 km from Bang Bao Fisherman Village. The property has valet parking, a tour desk and ticket service for guests.The resort has a terrace.Klong Plu Waterfall is 9.7 km from Sea Flower Resort, while International Clinic, Ko Chang is 12.9 km away.Lonely Beach is a great choice for travelers interested in friendly locals, sunsets and food.</string>
+    <string name="txt_popular_tower">Popular Tours</string>
+
+    <string name="txt_total_review">Based on %1$d reviews</string>
+    <string name="txt_max_score">%1$f/%2$d</string>
+</resources>
