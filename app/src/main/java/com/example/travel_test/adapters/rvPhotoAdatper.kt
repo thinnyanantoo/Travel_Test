@@ -7,8 +7,7 @@ import com.example.travel_test.views.viewholders.rvPhotoViewHolder
 
 class rvPhotoAdatper : BaseRecyclerAdapter<rvPhotoViewHolder, String>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): rvPhotoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item, parent, false)
         return rvPhotoViewHolder(view)
     }
-
 }

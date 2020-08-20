@@ -6,15 +6,19 @@ import com.example.travel_test.data.vos.TourVO
 import io.reactivex.Observable
 
 interface ToursModel {
-    fun getAllTours() : Observable<List<TourVO>>
+    fun getAllTours(onError: (String) -> Unit) : LiveData<List<TourVO>>
 
     fun getAllToursFromApiAndSaveToDatabase(onSuccess : () -> Unit, onError: (String) -> Unit)
 
-    fun getAllToursByName ( TourName : String?, TourType : Int) : TourVO
+    fun getAllCountriesByName (name : String) : LiveData<CountryVO>
 
-    fun getAllCountries () : Observable<List<CountryVO>>
+    fun getAllCountries (onError: (String) -> Unit) :LiveData<List<CountryVO>>
 
     fun getAllCountriesFomApiAndSaveToDatabase(onSuccess: () -> Unit,onError: (String) -> Unit)
 
-    fun getAllCountriesByName( CountryName : String?, CountryType : Int) : CountryVO
+    fun getAllToursByName(name : String) : LiveData<TourVO>
+
+//    fun getCountryDetail( countryName : String, onSuccess: (countries : CountryVO) -> Unit , onError: (String) -> Unit)
+//
+//    fun getTourDetail( TourName : String, onSuccess: (tours : TourVO) -> Unit , onError: (String) -> Unit)
 }

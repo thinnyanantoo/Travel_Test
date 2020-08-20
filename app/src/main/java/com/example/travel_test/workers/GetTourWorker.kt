@@ -21,7 +21,7 @@ class GetTourWorker (context : Context, workerParams : WorkerParameters) : BaseW
                 result = Result.success()
             },
             onError = {
-                Result.failure()
+               result = Result.failure()
             }
         )
 return result

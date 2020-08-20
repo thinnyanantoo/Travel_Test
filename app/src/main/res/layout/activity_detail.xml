@@ -1,131 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swipeRefreshLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-<ScrollView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context= ".activities.DetailActivity"
-        android:orientation="vertical">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-            <ImageView
-                android:id="@+id/ivMain"
-                android:scaleType="centerCrop"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/detail_resources"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-
-            <TextView
-                android:id="@+id/resourceName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sea Flower Resort"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/ivMain"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3"
-                />
-            <ImageView
-                android:id="@+id/ivLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_location_on_black_24dp"
-                app:layout_constraintStart_toStartOf="@id/ratingbar"
-                app:layout_constraintBottom_toBottomOf="@id/resourceName"
-                app:layout_constraintTop_toTopOf="@+id/ratingbar"
-                />
-            <TextView
-                android:id="@+id/resourceLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="Koh Chang Tai, Thailand"
-                android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@+id/ivLocation"
-                app:layout_constraintBottom_toBottomOf="@+id/resourceName"
-                app:layout_constraintTop_toTopOf="@id/ratingbar"/>
-
-            <RatingBar
-                android:id="@+id/ratingbar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/ivMain"
-                app:layout_constraintStart_toStartOf="@+id/ivBack"
-                app:layout_constraintTop_toBottomOf="@+id/resourceLocation"
-                app:layout_constraintVertical_bias="0.38" />
-
-            <TextView
-                android:id="@+id/tvDetailRate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                tools:text="2.1"
-                android:textColor="#000000"
-                app:layout_constraintBottom_toBottomOf="@+id/ratingbar"
-                app:layout_constraintStart_toEndOf="@+id/ratingbar"
-                app:layout_constraintTop_toTopOf="@+id/ratingbar" />
-
-            <ImageView
-                android:id="@+id/ivBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/resourceName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ivMain"
-                android:src="@drawable/ic_arrow_back_black_24dp" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/drawable_top_round_corner"
-            android:layout_marginTop="-8dp">
+            android:orientation="vertical"
+            tools:context=".activities.DetailActivity">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvServiceScoreRage"
-                android:layout_marginTop="16dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="200dp">
 
-            <TextView
-                android:id="@+id/tvDetail"
-                android:layout_margin="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPhoto"
-                android:layout_margin="16dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
+                    <ImageView
+                        android:id="@+id/ivMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/detail_resources" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp">
+
+                        <ImageView
+                            android:id="@+id/ivBack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/resourceName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ivBack"
+                            android:layout_marginTop="30dp"
+                            android:maxLines="2"
+                            android:text="Sea Flower Resort"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/resourceName"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/ic_location_on_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/resourceLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/resourceName"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@id/ivLocation"
+                            android:maxLines="2"
+                            android:textColor="@android:color/white"
+                            tools:text="Koh Chang Tai, Thailand" />
+
+                        <RatingBar
+                            android:id="@+id/ratingbar"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/resourceLocation"
+                            android:layout_marginTop="5dp"
+                            android:rating="4.5"
+                            android:layout_marginLeft="12dp"
+                            android:theme="@style/RatingBar"
+                            android:numStars="5"
+                            />
+
+                        <TextView
+                            android:id="@+id/tvDetailRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/resourceLocation"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_toRightOf="@id/ratingbar"
+                            android:textColor="@android:color/white"
+                            tools:text="2.1" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                android:layout_marginTop="-8dp"
+                android:background="@drawable/drawable_top_round_corner"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvServiceScoreRage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <TextView
+                    android:id="@+id/tvDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

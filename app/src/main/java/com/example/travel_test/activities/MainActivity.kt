@@ -11,30 +11,8 @@ import com.example.travel_test.mvp.view.MainView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() ,MainView {
-    override fun navigateToDetail(name: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class MainActivity : AppCompatActivity() {
 
-    override fun displayCountryList(countryList: List<CountryVO>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun displayTourList(tourList: List<TourVO>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun displayEmptyView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun enableSwipeRefresh() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun disableSwipeRefresh() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     private fun replaceFragment(){
         supportFragmentManager.beginTransaction().replace(R.id.fLBottomNavigationContainer,

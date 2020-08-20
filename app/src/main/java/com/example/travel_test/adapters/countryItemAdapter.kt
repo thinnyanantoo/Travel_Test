@@ -9,7 +9,8 @@ import com.example.travel_test.delegate.TravelDelegate
 import com.example.travel_test.views.viewholders.countryItemViewHolder
 
 
-class countryItemAdapter(delegate: TravelDelegate): BaseRecyclerAdapter<countryItemViewHolder,CountryVO>() {
+class countryItemAdapter(delegate: TravelDelegate) :
+    BaseRecyclerAdapter<countryItemViewHolder, CountryVO>() {
 
     val delegate: TravelDelegate = delegate
 

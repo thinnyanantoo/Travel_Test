@@ -1,10 +1,8 @@
 package com.example.travel_test.Persistence.daos
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import com.example.travel_test.data.vos.CountryVO
 import com.example.travel_test.data.vos.TourVO
 import retrofit2.http.DELETE
 
@@ -19,9 +17,8 @@ interface TourDao {
 
     @Query("DELETE FROM tourTable")
     fun deleteAll()
-
-    @DELETE
-    fun deleteTours(tourVO: TourVO)
+    @Delete
+    fun deleteTours(tours: TourVO)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTour(tourVO: TourVO)

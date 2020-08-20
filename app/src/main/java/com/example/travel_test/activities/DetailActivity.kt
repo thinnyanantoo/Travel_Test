@@ -4,99 +4,112 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.travel_test.R
 import com.example.travel_test.adapters.rvPhotoAdatper
 import com.example.travel_test.adapters.rvServiceScoreRageAdapter
 import com.example.travel_test.data.models.ToursModeImpl
 import com.example.travel_test.data.models.ToursModel
-//import com.example.travel_test.data.vos.photoVO
+import com.example.travel_test.data.vos.CountryVO
+import com.example.travel_test.data.vos.TourVO
+import com.example.travel_test.mvp.Impls.DetailPresenterImpl
+import com.example.travel_test.mvp.presenter.DetailPresenter
+import com.example.travel_test.mvp.view.DetailView
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_detail.swipeRefreshLayout
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.photo_item.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), DetailView {
 
 
-    var photoAdatper:rvPhotoAdatper = rvPhotoAdatper()
-    var serviceScoreRageAdapter: rvServiceScoreRageAdapter = rvServiceScoreRageAdapter()
-     val  num : Int = 0
-   companion object{
-       const val IE_NAME = "Name"
-       val IE_TYPE = "Type"
-       fun newIntent(context: Context,name : String, type : Int) : Intent {
-           val intent = Intent(context,DetailActivity::class.java)
-           intent.putExtra(IE_NAME,name)
-           intent.putExtra(IE_TYPE,type)
-           return intent
-       }
-   }
+    private lateinit var mTourModel: ToursModeImpl
+    private lateinit var photoAdatper: rvPhotoAdatper
+    private lateinit var serviceScoreRageAdapter: rvServiceScoreRageAdapter
+    private lateinit var mPresenter: DetailPresenter
 
-    private var mTourModel : ToursModel = ToursModeImpl
+    companion object {
+        const val IE_NAME = "IE_Name"
+        const val IE_KEY = "Key"
+        fun newIntent(context: Context, name: String, key: Int): Intent {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(IE_NAME, name)
+            intent.putExtra(IE_KEY, key)
+            return intent
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        setUpPresenter()
+
+        val name = intent.getStringExtra(IE_NAME)
+        val key = intent.getIntExtra(IE_KEY, 0)
         setUpRecycler()
 
-
-        //country start
-        val countryName = intent.getStringExtra(IE_NAME)
-        val countryId = intent.getIntExtra(IE_TYPE,0)
-        val countries = mTourModel.getAllCountriesByName(countryName, countryId)
-
-
-        resourceName.text = countries.name
-
-        resourceLocation.text = countries.location
-
-
-        this.let {
-            Glide.with (this)
-                .load(countries.photo)
-                .into(ivMain)
-        }
-        tvDetail.text = countries.description
-
-        tvDetailRate.text = countries.averageRating.toString()
-
-
-        serviceScoreRageAdapter.setNewData(countries.scoresAndReviews.toMutableList())
-
-        photoAdatper.setNewData(countries.photo!!.toMutableList())
-
-
-
-        //tours start
-        val tourName = intent.getStringExtra(IE_NAME)
-        val tourId = intent.getIntExtra(IE_TYPE,1)
-        val tours = mTourModel.getAllToursByName(tourName, tourId)
-
-
-        resourceName.text = tours.name
-
-        resourceLocation.text = tours.location
-
-        this.let {
-            Glide.with (this)
-                .load(countries.photo)
-                .into(ivMain)
-        }
-
-
-        tvDetail.text = tours.description
-
-        tvDetailRate.text = tours.averageRating.toString()
-
-
-        serviceScoreRageAdapter.setNewData(tours.scoresAndReviews.toMutableList())
-
-        photoAdatper.setNewData(tours.photo!!.toMutableList())
+        mPresenter.onUiReady(this, name, key)
         ivBack.setOnClickListener { finish() }
-
     }
 
-    private fun  setUpRecycler(){
-        rvPhoto.adapter  = photoAdatper
+    private fun setUpRecycler() {
+        photoAdatper = rvPhotoAdatper()
+        val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvPhoto.layoutManager = linearLayoutManager
+        rvPhoto.adapter = photoAdatper
+        serviceScoreRageAdapter = rvServiceScoreRageAdapter()
+        val linearLayoutManagerService =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvServiceScoreRage.layoutManager = linearLayoutManagerService
         rvServiceScoreRage.adapter = serviceScoreRageAdapter
     }
+
+    override fun disableSwipeRefresh() {
+        swipeRefreshLayout.isRefreshing = false
+    }
+
+    override fun displayEmptyView() {
+    }
+
+    override fun enableSwipeRefresh() {
+        swipeRefreshLayout.isRefreshing = true
+    }
+
+    override fun showCountryDetail(countryVO: CountryVO, name: String) {
+        tvDetail.text = countryVO.description
+        resourceName.text = countryVO.name
+        resourceLocation.text = countryVO.location
+        Glide.with(this)
+            .load(countryVO.photo?.get(0))
+            .into(ivMain)
+        tvDetailRate.text = countryVO.averageRating.toString()
+
+        photoAdatper.setNewData(countryVO.photo!!.toMutableList())
+        serviceScoreRageAdapter.setNewData(countryVO.scoresAndReviews.toMutableList())
+
+    }
+
+    override fun showToursDetail(tourVO: TourVO, name: String) {
+        tvDetail.text = tourVO.description
+        resourceName.text = tourVO.name
+        resourceLocation.text = tourVO.location
+        Glide.with(this)
+            .load(tourVO.photo?.get(0))
+            .into(ivMain)
+        tvDetailRate.text = tourVO.averageRating.toString()
+
+        photoAdatper.setNewData(tourVO.photo!!.toMutableList())
+        serviceScoreRageAdapter.setNewData(tourVO.scoresAndReviews.toMutableList())
+
+    }
+
+    private fun setUpPresenter() {
+        mPresenter = ViewModelProviders.of(this).get(DetailPresenterImpl::class.java)
+        mPresenter.initPresenter(this)
+    }
+
 }

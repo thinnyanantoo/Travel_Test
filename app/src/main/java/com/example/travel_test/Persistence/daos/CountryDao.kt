@@ -10,7 +10,7 @@ interface CountryDao {
     fun getAllCountries(): LiveData<List<CountryVO>>
 
     @Query("SELECT * FROM countryTable WHERE name = :countryName")
-    fun getCountryById(countryName: String): LiveData<CountryVO>
+    fun getCountryByName(countryName: String): LiveData<CountryVO>
 
     @Query("DELETE FROM countryTable")
     fun deleteAll()

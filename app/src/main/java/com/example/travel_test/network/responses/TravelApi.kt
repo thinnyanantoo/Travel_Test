@@ -14,6 +14,4 @@ interface TravelApi {
 
     @GET(GET_TOURS)
     fun getAllTours(@Query(PARAM_ACCESS_TOKEN) accessToken : String) : Observable<getAllTourResponses>
-
-
 }
