@@ -18,6 +18,8 @@ import com.example.travel_test.data.vos.TourVO
 import com.example.travel_test.mvp.Impls.DetailPresenterImpl
 import com.example.travel_test.mvp.presenter.DetailPresenter
 import com.example.travel_test.mvp.view.DetailView
+import com.example.travel_test.views.viewpods.PhotoViewPod
+import com.example.travel_test.views.viewpods.ScoreAndReviewAndapterViewPod
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_detail.swipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -25,11 +27,13 @@ import kotlinx.android.synthetic.main.photo_item.*
 
 class DetailActivity : AppCompatActivity(), DetailView {
 
-
     private lateinit var mTourModel: ToursModeImpl
     private lateinit var photoAdatper: rvPhotoAdatper
     private lateinit var serviceScoreRageAdapter: rvServiceScoreRageAdapter
     private lateinit var mPresenter: DetailPresenter
+
+    private lateinit var mPhotoViewPod: PhotoViewPod
+    private lateinit var mScoreViewPod: ScoreAndReviewAndapterViewPod
 
     companion object {
         const val IE_NAME = "IE_Name"
@@ -46,6 +50,9 @@ class DetailActivity : AppCompatActivity(), DetailView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        mPhotoViewPod = vpPhoto as PhotoViewPod
+        mScoreViewPod = vpScoreAndReview as ScoreAndReviewAndapterViewPod
+
         setUpPresenter()
 
         val name = intent.getStringExtra(IE_NAME)
@@ -58,14 +65,9 @@ class DetailActivity : AppCompatActivity(), DetailView {
 
     private fun setUpRecycler() {
         photoAdatper = rvPhotoAdatper()
-        val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvPhoto.layoutManager = linearLayoutManager
-        rvPhoto.adapter = photoAdatper
+        mPhotoViewPod.onbindPhoto(photoAdatper)
         serviceScoreRageAdapter = rvServiceScoreRageAdapter()
-        val linearLayoutManagerService =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvServiceScoreRage.layoutManager = linearLayoutManagerService
-        rvServiceScoreRage.adapter = serviceScoreRageAdapter
+        mScoreViewPod.bindScoreAdatper(serviceScoreRageAdapter)
     }
 
     override fun disableSwipeRefresh() {

@@ -1,77 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cvHome"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="130dp"
-    android:layout_height="wrap_content"
+    android:id="@+id/cvHome"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp">
+    android:orientation="vertical">
 
-        <FrameLayout
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivCountry"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/ivCountry"
-                android:layout_width="130dp"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="10dp">
 
             <TextView
                 android:id="@+id/countryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="10dp"
+                android:maxLines="2"
                 android:text="Thailand"
-                android:textStyle="bold"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                android:layout_marginStart="10dp"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="25dp"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/countryPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18 Tours"
+                android:layout_below="@id/countryTitle"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="10dp"
-                android:textSize="10sp"
                 android:layout_marginStart="10dp"
-                android:textColor="#FFFFFF"/>
-            <androidx.cardview.widget.CardView
-                android:layout_width="25dp"
-                android:layout_height="45dp"
-                android:layout_gravity="bottom|end"
+                android:layout_marginTop="2dp"
+                android:maxLines="2"
+                android:text="18 Tours"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="25dp"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#D3818181">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:backgroundTint="#D3818181"
-                android:layout_marginStart="100dp"
+                android:orientation="vertical">
 
-                android:layout_marginBottom="10dp">
-                <LinearLayout
+                <TextView
+                    android:id="@+id/countryRate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:backgroundTint="#D3818181">
+                    android:layout_height="15dp"
+                    android:layout_margin="5dp"
+                    android:text="4.3"
+                    android:textColor="#141010"
+                    android:textSize="10sp" />
 
-                    <TextView
-                        android:id="@+id/countryRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:layout_margin="5dp"
-                        android:text="4.3"
-                        android:textColor="#141010"
-                        android:textSize="10sp" />
-                    <ImageView
+                <ImageView
                     android:id="@+id/ivStar"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_star_24dp"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                    android:src="@drawable/ic_star_24dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-        </FrameLayout>
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</androidx.cardview.widget.CardView>
 
 

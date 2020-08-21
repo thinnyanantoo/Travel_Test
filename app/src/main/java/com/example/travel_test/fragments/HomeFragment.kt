@@ -22,6 +22,8 @@ import com.example.travel_test.delegate.TravelDelegate
 import com.example.travel_test.mvp.Impls.MainPresenterImpl
 import com.example.travel_test.mvp.presenter.MainPresenter
 import com.example.travel_test.mvp.view.MainView
+import com.example.travel_test.views.viewpods.CountryRecyclerAdapterViewPod
+import com.example.travel_test.views.viewpods.TourRecyclerViewPod
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -47,6 +49,9 @@ class HomeFragment : Fragment(), MainView {
     private lateinit var countryAdapter: countryItemAdapter
     private lateinit var toursAdapter: populatToursAdapter
 
+    private lateinit var mcountryViewPod: CountryRecyclerAdapterViewPod
+    private lateinit var mToursViewPod: TourRecyclerViewPod
+
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -67,14 +72,12 @@ class HomeFragment : Fragment(), MainView {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
-//        var countryAdapter : countryItemAdapter= countryItemAdapter(this)
-//        view.rvCountry.adapter = countryAdapter
-//
-//        val toursAdapter : populatToursAdapter = populatToursAdapter(this)
-//        view.rvPopularTours.adapter = toursAdapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        mcountryViewPod = vpCountry as CountryRecyclerAdapterViewPod
+        mToursViewPod = vpTours as TourRecyclerViewPod
 
         setUpPresenter()
         hideEmptyView()
@@ -98,11 +101,11 @@ class HomeFragment : Fragment(), MainView {
     }
 
     override fun displayCountryList(countryList: List<CountryVO>) {
-        countryAdapter.setNewData(countryList.toMutableList())
+        mcountryViewPod.onbindCountryAdatper(countryAdapter, countryList.toMutableList())
     }
 
     override fun displayTourList(tourList: List<TourVO>) {
-        toursAdapter.setNewData(tourList.toMutableList())
+        mToursViewPod.onbindTourAdapter(toursAdapter, tourList.toMutableList())
     }
 
     override fun displayEmptyView() {
@@ -118,15 +121,7 @@ class HomeFragment : Fragment(), MainView {
 
     private fun setUpRecycler() {
         countryAdapter = countryItemAdapter(mPresenter)
-        val linearLayoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rvCountry.layoutManager = linearLayoutManager
-        rvCountry.adapter = countryAdapter
         toursAdapter = populatToursAdapter(mPresenter)
-        val linearLayoutManagerTour =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        rvPopularTours.layoutManager = linearLayoutManagerTour
-        rvPopularTours.adapter = toursAdapter
     }
 
     private fun setUpSwipeRefresh() {
