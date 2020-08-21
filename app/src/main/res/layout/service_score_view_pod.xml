@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.travel_test.views.viewpods.ScoreAndReviewAndapterViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin = "16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvServiceScoreRage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</com.example.travel_test.views.viewpods.ScoreAndReviewAndapterViewPod>
